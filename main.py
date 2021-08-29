@@ -19,19 +19,21 @@ def main():
     main_window.geometry('%dx%d+%d+%d' % (w, h, x, y))
     main_window.attributes('-topmost', 'true')
 
-    interupt = 0
 
     def stop():
-        interupt = 1
+        exit_event.set()
 
+    exit_event = threading.Event()
 
     def get_input():
         input = entry.get("1.0", "end-1c")
         time.sleep(2)
-        while interupt==0:
+        while True:
             time.sleep(0.50)
             keyboard = Controller()
             keyboard.type(input)
+            if exit_event.is_set():
+                break
 
     t1 = threading.Thread(target=get_input)
 
