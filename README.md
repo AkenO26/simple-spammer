@@ -1,1 +1,1 @@
-# simple-spammer
+# simple-spammer-with-gui
