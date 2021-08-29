@@ -26,9 +26,11 @@ def main():
 
     def get_input():
         input = entry.get("1.0", "end-1c") + "\n"
+        ms = float(delay.get())
+        counter = int(times.get())
         time.sleep(2)
-        while True:
-            time.sleep(0.20)
+        for i in range(counter):
+            time.sleep(ms)
             keyboard = Controller()
             keyboard.type(input)
             if exit_event.is_set():
@@ -41,6 +43,18 @@ def main():
 
     entry = tk.Text(main_window, height=10, width=100)
     entry.pack(padx=20, pady=20, side="top")
+
+    delay = tk.Entry(main_window, width=3)
+    delay.pack(padx=20, pady=10, side="right")
+
+    delay_label = tk.Label(main_window, text="Delay(sec) :")
+    delay_label.pack(pady=10, side="right")
+
+    times_label = tk.Label(main_window, text="Number :")
+    times_label.pack(pady=10, side="left")
+
+    times = tk.Entry(main_window, width=4)
+    times.pack(padx=20, pady=10, side="left")
 
     start_button = tk.Button(main_window, text="Start", width="10", command=start_t1)
     start_button.pack(padx=20, pady=10)
